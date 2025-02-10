@@ -1,7 +1,5 @@
 import numpy as np
-from numba import njit
 
-@njit # Numba implementation
 def solve_wave_eq(psi_0, x, t_steps, N, c, dt, dx):
     '''
     Solve the wave equation using the finite difference method
