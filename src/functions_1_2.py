@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 from scipy.special import erfc
 from numba import jit
 
@@ -26,4 +28,18 @@ def analytical_solution(y, t, D, terms=10):
     for i in range(terms):
         sol += erfc((1 - y + 2 * i) / (2 * np.sqrt(D * t))) - erfc((1 + y + 2 * i) / (2 * np.sqrt(D * t)))
     return sol
+
+def animate(step, c, D, dx, dt, N, ax, cmap):
+    c = update_concentration(c, D, dx, dt, N)
+    cmap.set_array(c.T)
+    ax.set_title(f"Time = {step * dt:.3f}")
+    return [cmap]
+
+def animate1(step, c, D, dx, dt, N, line_num, line_ana, ax, y_vals):
+    c = update_concentration(c, D, dx, dt, N)
+    mean_conc = c.mean(axis=0)
+    line_num.set_data(y_vals, mean_conc)
+    line_ana.set_data(y_vals, analytical_solution(y_vals, step * dt, D))
+    ax.set_title(f"Time = {step * dt:.3f}")
+    return line_num, line_ana
 
