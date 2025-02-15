@@ -1,6 +1,6 @@
 import numpy as np
 
-def jacobi_iteration(grid, max_iters, tol=1e-5):
+def jacobi_iteration(grid, max_iters, p):
     """
     Jacobi iteration solving at steady-state.
 
@@ -11,10 +11,12 @@ def jacobi_iteration(grid, max_iters, tol=1e-5):
 
     Output:
         numpy.ndarray: The final converged grid.
+        int: number of iterations to convergence
     """
     rows, cols = grid.shape
     new_grid = np.copy(grid)  
-
+    tol = 10**-p
+    counter = 0
     for _ in range(max_iters):
         old_grid = new_grid.copy()  # Store the previous iteration
 
@@ -25,8 +27,9 @@ def jacobi_iteration(grid, max_iters, tol=1e-5):
 
         # Max difference for convergence check
         delta = np.max(np.abs(new_grid - old_grid))
+        counter += 1
         if delta < tol:
             break
 
-    return new_grid
+    return new_grid, counter
 

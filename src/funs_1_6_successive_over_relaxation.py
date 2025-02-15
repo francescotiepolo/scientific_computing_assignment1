@@ -1,6 +1,6 @@
 import numpy as np
 
-def successive_over_relaxation(grid, max_iters, w, tol=1e-5):
+def successive_over_relaxation(grid, max_iters, w, p):
     """
     Successive Over Relaxation solving at steady-state.
 
@@ -12,10 +12,12 @@ def successive_over_relaxation(grid, max_iters, w, tol=1e-5):
 
     Output:
         numpy.ndarray: final converged grid.
+        int: number of iterations to convergence
     """
     rows, cols = grid.shape
     new_grid = np.copy(grid)  
-
+    tol = 10**-p
+    counter = 0
     for _ in range(max_iters):
         max_change = 0  
 
@@ -27,8 +29,9 @@ def successive_over_relaxation(grid, max_iters, w, tol=1e-5):
                 
                 new_grid[i, j] = new_val
                 max_change = max(max_change, abs(new_val - old_val))  
-
+                
+        counter += 1 
         if max_change < tol:
             break  
 
-    return new_grid
+    return new_grid, counter
