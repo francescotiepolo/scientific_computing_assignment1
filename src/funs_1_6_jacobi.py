@@ -32,4 +32,3 @@ def jacobi_iteration(grid, max_iters, p):
             break
 
     return new_grid, counter
-
