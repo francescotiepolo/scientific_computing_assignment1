@@ -4,7 +4,7 @@ def jacobi_iteration(grid, max_iters, p):
     """
     Jacobi iteration solving at steady-state.
 
-    Input<:
+    Inputs:
         grid (numpy.ndarray): Initial grid.
         max_iters (int): Max number of iterations.
         tol (float): Convergence tolerance.
