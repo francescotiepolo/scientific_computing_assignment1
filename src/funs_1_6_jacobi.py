@@ -21,14 +21,22 @@ def jacobi_iteration(grid, max_iters, p):
         old_grid = new_grid.copy()  # Store the previous iteration
 
         # Update
-        for i in range(0, rows):
-            for j in range(0, cols):
-                new_grid[i, j] = (1/4) * (old_grid[i + 1, j] + old_grid[i - 1, j] + old_grid[i, j + 1] + old_grid[i, j - 1])
-
-        new_grid[:, 0] = new_grid[:, -1] # Boundry conditions
+        for i in range(1, rows-1):
+            for j in range(1, cols-1):
+                new_grid[i, j] = 0.25 * (
+                    old_grid[i + 1, j] +
+                    old_grid[i - 1, j] +
+                    old_grid[i, j + 1] +
+                    old_grid[i, j - 1]
+                )
+                
         # Reapply fixed y-boundaries (they remain unchanged)
         new_grid[0, :] = 0 # bottom: c = 0
         new_grid[-1, :] = 1 # top: c = 1
+
+        new_grid[:, 0] = new_grid[:, 1]   # Left boundary
+        new_grid[:, -1] = new_grid[:, -2]  # Right boundary
+
 
         # Max difference for convergence check
         delta = np.max(np.abs(new_grid - old_grid))
