@@ -1,7 +1,5 @@
 import numpy as np
-import numba as njit
 
-@njit
 def jacobi_iteration(grid, max_iters, p):
     """
     Jacobi iteration solving at steady-state.
@@ -54,7 +52,6 @@ def jacobi_iteration(grid, max_iters, p):
 
     return new_grid, counter
 
-@njit
 def gauss_seidel_iteration(grid, max_iters, p):
     """
     Gauss Seidel iteration solving at steady-state.
@@ -107,7 +104,6 @@ def gauss_seidel_iteration(grid, max_iters, p):
 
     return new_grid, counter
 
-@njit
 def successive_over_relaxation(grid, max_iters, w, p):
     """
     Successive Over Relaxation solving at steady-state.
