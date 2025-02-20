@@ -1,6 +1,7 @@
 import numpy as np
 from numba import jit
 
+# Due to some problems with numba handling the delta/tol comparison, we create the following functions to be optimized by numba and later called in the main functions
 @jit(nopython=True)
 def update_j(old_grid, new_grid, rows, cols):
     for i in range(1, rows-1):
