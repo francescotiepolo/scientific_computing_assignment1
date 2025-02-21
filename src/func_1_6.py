@@ -74,6 +74,7 @@ def jacobi_iteration(grid, max_iters, p):
     new_grid = np.copy(grid)
     tol = np.float64(10**-p)
     counter = 0
+    delta_list = []
     for _ in range(max_iters):
         old_grid = new_grid.copy()  # Store the previous iteration
 
@@ -86,10 +87,11 @@ def jacobi_iteration(grid, max_iters, p):
 
         # Max difference for convergence check
         delta = delta_compute(new_grid, old_grid, rows, cols)
+        delta_list.append(delta)
         if delta < tol:
             break
 
-    return new_grid, counter
+    return new_grid, counter, delta_list
 
 def gauss_seidel_iteration(grid, max_iters, p):
     """
@@ -108,6 +110,7 @@ def gauss_seidel_iteration(grid, max_iters, p):
     new_grid = np.copy(grid)
     tol = np.float64(10**-p)
     counter = 0
+    delta_list = []
     for _ in range(max_iters):
         old_grid = new_grid.copy()  # Store the previous iteration
 
@@ -121,10 +124,11 @@ def gauss_seidel_iteration(grid, max_iters, p):
 
         # Max difference for convergence check
         delta = delta_compute(new_grid, old_grid, rows, cols)
+        delta_list.append(delta)
         if delta < tol:
             break
 
-    return new_grid, counter
+    return new_grid, counter, delta_list
 
 def successive_over_relaxation(grid, max_iters, w, p):
     """
@@ -144,6 +148,7 @@ def successive_over_relaxation(grid, max_iters, w, p):
     new_grid = np.copy(grid)
     tol = np.float64(10**-p)
     counter = 0
+    delta_list = []
     for _ in range(max_iters):
         old_grid = new_grid.copy()  # Store the previous iteration
 
@@ -157,7 +162,8 @@ def successive_over_relaxation(grid, max_iters, w, p):
 
         # Max difference for convergence check
         delta = delta_compute(new_grid, old_grid, rows, cols)
+        delta_list.append(delta)
         if np.float64(delta) < np.float64(tol):
             break
   
-    return new_grid, counter
+    return new_grid, counter, delta_list
