@@ -5,14 +5,25 @@ The first section of the assignment delves into the discretization of the wave e
 The functions udes in the Jupiter Notebooks are stored in the src folder. The resulting figures and animations are saved in the fig folder. The Jupiter notebooks titles refer to the 3 blocks of questions in the assignment PDF. plots_1_K.ipynb refers to the last questions concerning the sinks. Test for the function used in plots_1_1 is saved in tests folder.
 
 libraries used:
+
 import os
+
 import numpy as np
+
 import matplotlib.pyplot as plt
+
 from matplotlib.animation import FuncAnimation
+
 from IPython.display import HTML
+
 from matplotlib import cm
+
 from matplotlib import colors
+
 from src.solve_wave_eq_func import solve_wave_eq
+
 from numba import jit
+
 from scipy.special import erfc
+
 import pytest
