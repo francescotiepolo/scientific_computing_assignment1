@@ -1,4 +1,5 @@
-# scientific_computing
+# Scientific Computing - Assignment 1
+## Michelangelo Grasso (15840417) & Ilias-Panagiotis Sofianos (15889378) & Francesco Tiepolo (13319817)
 
 The first section of the assignment delves into the discretization of the wave equation through the use of a central difference scheme to simulate the motion of a vibrating string under different initial conditions. The second section explores the diffusion equation of a two-dimensional domain, comparing numerical and analytical results, and analyzing the efficiency of iterative methods such as Jacobi, Gauss-Seidel and Successive Over Relaxation (SOR).
 
